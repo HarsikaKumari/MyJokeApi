@@ -16,22 +16,27 @@ app.get("/random", (req, res) => {
 //GET a specific joke
 app.get("/random/:id", (req, res) => {
   const id = parseInt(req.params.id);
+  console.log(id);
   const foundJoke = jokes.find((joke) => joke.id === id);
-  res.render(foundJoke);
+  res.json(foundJoke);
 });
 
+//GET a jokes by filtering on the joke type
+app.get("/filters", (req, res) => {
+  const type = req.query.type;
+  const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
+  res.json(filteredActivities);
+});
 
-//3. GET a jokes by filtering on the joke type
+//POST a new joke
 
-//4. POST a new joke
+//PUT a joke
 
-//5. PUT a joke
+//PATCH a joke
 
-//6. PATCH a joke
+//DELETE Specific joke
 
-//7. DELETE Specific joke
-
-//8. DELETE All jokes
+//DELETE All jokes
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);

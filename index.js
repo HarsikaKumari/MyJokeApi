@@ -29,7 +29,7 @@ app.get("/filters", (req, res) => {
 });
 
 //POST a new joke
-app.post("/jokes", (req,res) => {
+app.post("/jokes", (req, res) => {
   const newjoke = {
     id: jokes.length +1,
     jokeText: req.body.text,
@@ -41,6 +41,18 @@ app.post("/jokes", (req,res) => {
 });
 
 //PUT a joke
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const replacementJoke = {
+    id: id,
+    jokeText: req.body.text,
+    jokeType: req.body.type,
+  };
+  const searchIndex = jokes.findIndex((joke) => joke.id === id);
+  console.log(replacementJoke);
+  jokes[searchIndex] = replacementJoke;
+  res.json(replacementJoke);
+});
 
 //PATCH a joke
 

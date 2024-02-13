@@ -87,7 +87,7 @@ app.delete("/jokes/:id", (req, res) => {
 app.delete("/all", (req, res) => {
   const userKey = req.query.key;
   if (userKey === masterKey) {
-    jokes = [];
+    jokes = [ ];
     res.sendStatus(200);
   } else {
     res.status(404).json({error: `you are not authorize to perform this action.`});
